@@ -1,5 +1,5 @@
 # Adivina La Canción 🎶
-## Versión Música Cristiana
+### Versión Música Cristiana
 
 Está pagina genera una canción cristiana al azar de la base de datos con más de 15 artistas junto con sus álbumes más famosos.
 Al presionar el botón aparece la cara delantera de una tarjeta, en esta cara se muestra el QR y el link de la canción generada al azar.
