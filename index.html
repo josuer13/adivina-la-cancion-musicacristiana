@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="favicon.png"/>
+    <title>App Música Cristiana</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header style="background-color: #ffffff; padding: 1rem; text-align: left;">
+      <h1>Generador de Música Cristiana</h1>
+    </header>
+    <main>
+      <div class="left">
+        <div class="card-container">
+          <div class="card" id="songCard">
+            <div class="card-face card-front">
+              <div class="card-front-content">
+                <div id="qrcode"></div>
+                <a href="#" class="song-url">URL de la canción</a>
+                <p>Presiona "Girar carta" para ver la canción</p>
+              </div>
+            </div>
+            <div class="card-face card-back">
+              <div class="song-info">
+                <h2 class="song-title" id="songTitle">Título</h2>
+                <p class="song-album" id="songAlbum">Álbum</p>
+                <p class="song-year" id="songYear">Año</p>
+                <p class="song-artist" id="songArtist">Artista</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="btn-generate" id="generateBtn" type="button">Aparecer carta</button>
+          <button class="btn-generate" id="flipCardBtn" type="button" disabled>Girar carta</button>
+        </div>
+      </div>
+
+      <div class="right">
+        <section class="settings-panel">
+          <div class="filter-group">
+            <label for="yearSelect">Año</label>
+            <select id="yearSelect">
+              <option value="any">Cualquier año</option>
+              <option value="range">Rango personalizado</option>
+            </select>
+            <div class="year-range hidden" id="yearRange">
+              <label>
+                Desde año
+                <input id="yearFrom" type="number" min="1900" max="2099" placeholder="Desde" />
+              </label>
+              <label>
+                Hasta año
+                <input id="yearTo" type="number" min="1900" max="2099" placeholder="Hasta" />
+              </label>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <p>Artistas</p>
+            <div class="tag-list" id="artistTags"></div>
+        </div>
+
+        <div class="config-actions">
+            <button class="btn-save" id="saveConfigBtn" type="button">Guardar configuraciones</button>
+            <p class="message" id="configMessage"></p>
+        </div>
+      </section>
+      </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  </body>
+</html>
