@@ -1,18 +1,215 @@
 <!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="favicon.png"/>
-    <title>App Música Cristiana</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header style="background-color: #ffffff; padding: 1rem; text-align: left;">
-      <h1>Generador de Música Cristiana</h1>
-    </header>
-    <main>
-      <div class="left">
+  <html lang="es">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="icon" type="image/x-icon" href="favicon.png"/>
+      <title>App Música Cristiana</title>
+      <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+      <!-- SETUP WIZARD -->
+  <div id="setupWizard" class="setup-wizard">
+
+    <!-- PASO 1 -->
+    <section id="step1" class="setup-step active-step">
+
+      <div class="setup-card">
+
+        <h2 class="setup-step-number">
+          Paso 1 de 3
+        </h2>
+
+        <h3 class="setup-title">
+          Configurar rondas
+        </h3>
+
+        <label
+          for="roundsInput"
+          class="setup-label"
+        >
+          ¿Cuántas rondas jugarán?
+        </label>
+
+        <input
+          type="number"
+          id="roundsInput"
+          class="setup-input"
+          min="1"
+          placeholder="Por defecto: 5"
+        />
+
+        <div class="setup-actions">
+
+          <button
+            id="toStep2"
+            class="primary-button"
+            type="button"
+          >
+            Siguiente
+          </button>
+
+        </div>
+
+      </div>
+    </section>
+
+
+  <!-- PASO 2 -->
+  <section
+    id="step2"
+    class="setup-step"
+  >
+
+    <div class="setup-card">
+
+      <h2 class="setup-step-number">
+        Paso 2 de 3
+      </h2>
+
+      <h3 class="setup-title">
+        Configurar grupos
+      </h3>
+
+      <label
+        for="groupCountInput"
+        class="setup-label"
+      >
+        Número de grupos
+      </label>
+
+      <input
+        type="number"
+        id="groupCountInput"
+        class="setup-input"
+        min="1"
+        max="10"
+        placeholder="Máximo 10"
+      />
+
+
+
+      <div
+        id="groupInputsContainer"
+        class="group-inputs-container"
+      >
+
+        <!--
+          INPUTS GENERADOS DINÁMICAMENTE
+        -->
+
+      </div>
+
+
+
+      <div class="setup-actions">
+
+        <button
+          id="backToStep1"
+          class="secondary-button"
+          type="button"
+        >
+          Atrás
+        </button>
+
+        <button
+          id="toStep3"
+          class="primary-button"
+          type="button"
+        >
+          Siguiente
+        </button>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- PASO 3 -->
+  <section
+    id="step3"
+    class="setup-step"
+  >
+
+    <div class="setup-card">
+
+      <h2 class="setup-step-number">
+        Paso 3 de 3
+      </h2>
+
+      <h3 class="setup-title">
+        Configurar filtros
+      </h3>
+
+          <section class="settings-panel">
+            <div class="filter-group">
+              <label for="yearSelect">Año</label>
+              <select id="yearSelect">
+                <option value="any">Cualquier año</option>
+                <option value="range">Rango personalizado</option>
+              </select>
+              <div class="year-range hidden" id="yearRange">
+                <label>
+                  Desde año
+                  <input id="yearFrom" type="number" min="1900" max="2099" placeholder="Min. 1900" />
+                </label>
+                <label>
+                  Hasta año
+                  <input id="yearTo" type="number" min="1900" max="2099" placeholder="Max. 2099" />
+                </label>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <p>Artistas</p>
+              <div class="tag-list" id="artistTags"></div>
+          </div>
+
+          <div class="config-actions">
+              <button class="btn-save" id="saveConfigBtn" type="button">Guardar configuraciones</button>
+              <p class="message" id="configMessage"></p>
+          </div>
+        </section>
+
+      <div
+        id="existingFiltersContainer"
+        class="existing-filters-container"
+      >
+      </div>
+
+
+
+      <div class="setup-actions">
+
+        <button
+          id="backToStep2"
+          class="secondary-button"
+          type="button"
+        >
+          Atrás
+        </button>
+
+        <button
+          id="startGameButton"
+          class="primary-button"
+          type="button"
+        >
+          Empezar
+        </button>
+
+      </div>
+
+    </div>
+  </section>
+
+  </div>
+
+      <header style="background-color: #ffffff; padding: 1rem; text-align: left;">
+        <h1>Generador de Música Cristiana</h1>
+      </header>
+      <main>
+         <div class="left">
         <div class="card-container">
           <div class="card" id="songCard">
             <div class="card-face card-front">
@@ -32,46 +229,121 @@
             </div>
           </div>
         </div>
-        <div class="card-actions">
-          <button class="btn-generate" id="generateBtn" type="button">Aparecer carta</button>
-          <button class="btn-generate" id="flipCardBtn" type="button" disabled>Girar carta</button>
+<div class="card-actions" id="preGameActions">  
+  <button class="btn-generate" id="generateBtn" type="button">Nueva Carta</button>
+  <button class="btn-generate" id="flipCardBtn" type="button" disabled>Girar carta</button>
+</div>
+<!--
+<div class="card-actions hidden" id="gameActions">
+  <button class="btn-generate" id="openScoreModalBtn" type="button">
+    Anotar puntos
+  </button>
+</div>
+
+<div class="card-actions hidden" id="gameActions">
+  <button class="btn-generate" id="openScoreModalBtn" type="button">
+    Anotar puntos
+  </button>
+</div> 
+--->        
         </div>
-      </div>
+        <div class="right">
+  <section class="scoreboard-panel">
 
-      <div class="right">
-        <section class="settings-panel">
-          <div class="filter-group">
-            <label for="yearSelect">Año</label>
-            <select id="yearSelect">
-              <option value="any">Cualquier año</option>
-              <option value="range">Rango personalizado</option>
-            </select>
-            <div class="year-range hidden" id="yearRange">
-              <label>
-                Desde año
-                <input id="yearFrom" type="number" min="1900" max="2099" placeholder="Desde" />
-              </label>
-              <label>
-                Hasta año
-                <input id="yearTo" type="number" min="1900" max="2099" placeholder="Hasta" />
-              </label>
-            </div>
-          </div>
+  <div class="scoreboard-header">
+    <h3 class="scoreboard-title">Table de puntajes</h3>
+  </div>
 
-          <div class="filter-group">
-            <p>Artistas</p>
-            <div class="tag-list" id="artistTags"></div>
-        </div>
+  <div class="scoreboard-groups">
 
-        <div class="config-actions">
-            <button class="btn-save" id="saveConfigBtn" type="button">Guardar configuraciones</button>
-            <p class="message" id="configMessage"></p>
-        </div>
-      </section>
-      </div>
-    </main>
+    <div class="score-team" id="group1">
+      <span class="score-team-name" id="group_1_name"></span>
+      <span class="score-points" id="group_1_score"></span>
+    </div>
 
-    <script src="app.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  </body>
-</html>
+    <div class="score-team" id="group2">
+      <span class="score-team-name" id="group_2_name"></span>
+      <span class="score-points" id="group_2_score"></span>
+    </div>
+
+    <div class="score-team" id="group3">
+      <span class="score-team-name" id="group_3_name"></span>
+      <span class="score-points" id="group_3_score"></span>
+    </div>
+
+    <div class="score-team" id="group4">
+      <span class="score-team-name" id="group_4_name"></span>
+      <span class="score-points" id="group_4_score"></span>
+    </div>
+
+    <div class="score-team" id="group5">
+      <span class="score-team-name" id="group_5_name"></span>
+      <span class="score-points" id="group_5_score"></span>
+    </div>
+
+    <div class="score-team" id="group6">
+      <span class="score-team-name" id="group_6_name"></span>
+      <span class="score-points" id="group_6_score"></span>
+    </div>
+
+    <div class="score-team" id="group7">
+      <span class="score-team-name" id="group_7_name"></span>
+      <span class="score-points" id="group_7_score"></span>
+    </div>
+
+    <div class="score-team" id="group8">
+      <span class="score-team-name" id="group_8_name"></span>
+      <span class="score-points" id="group_8_score"></span>
+    </div>
+
+    <div class="score-team" id="group9">
+      <span class="score-team-name" id="group_9_name"></span>
+      <span class="score-points" id="group_9_score"></span>
+    </div>
+
+    <div class="score-team" id="group10">
+      <span class="score-team-name" id="group_10_name"></span>
+      <span class="score-points" id="group_10_score"></span>
+    </div>
+  </section>
+
+  <div class="round-counter">
+    <span id="roundCounter">Ronda: 1/1</span>
+  </div>
+
+  </div>
+
+
+      </main>
+
+
+          <div class="game-modal hidden" id="gameModal">
+
+  <div class="game-modal-content">
+
+    <h2>Anotar puntos</h2>
+
+    <p>Selecciona el equipo:</p>
+
+    <div id="teamButtons"></div>
+
+    <div class="game-modal-actions">
+
+      <button id="playAgainBtn" type="button">
+        Jugar de nuevo
+      </button>
+
+      <button id="closeGameModalBtn" type="button">
+        Volver
+      </button>
+
+    </div>
+
+  </div>
+
+</div>  
+
+      <script src="app.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    </body>
+  </html>

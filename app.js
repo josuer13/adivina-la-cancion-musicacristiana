@@ -1,144 +1,11 @@
 const fallbackSongs = [
-  {
-    "artist": "Hillsong UNITED",
-    "title": "Oceans (Where Feet May Fail)",
-    "album": "Zion",
-    "year": 2013,
-    "url": "https://music.youtube.com/search?q=Oceans+Where+Feet+May+Fail+Hillsong+UNITED"
-  },
-  {
-    "artist": "Cory Asbury",
-    "title": "Reckless Love",
-    "album": "Reckless Love",
-    "year": 2018,
-    "url": "https://music.youtube.com/search?q=Reckless+Love+Cory+Asbury"
-  },
-  {
-    "artist": "Matt Redman",
-    "title": "10,000 Reasons (Bless the Lord)",
-    "album": "10,000 Reasons",
-    "year": 2011,
-    "url": "https://music.youtube.com/search?q=10000+Reasons+Matt+Redman"
-  },
-  {
-    "artist": "Chris Tomlin",
-    "title": "How Great Is Our God",
-    "album": "Arriving",
-    "year": 2004,
-    "url": "https://music.youtube.com/search?q=How+Great+Is+Our+God+Chris+Tomlin"
-  },
-  {
-    "artist": "Matt Redman",
-    "title": "Blessed Be Your Name",
-    "album": "Where Angels Fear to Tread",
-    "year": 2002,
-    "url": "https://music.youtube.com/search?q=Blessed+Be+Your+Name+Matt+Redman"
-  },
-  {
-    "artist": "Chris Tomlin",
-    "title": "Good Good Father",
-    "album": "Never Lose Sight",
-    "year": 2016,
-    "url": "https://music.youtube.com/search?q=Good+Good+Father+Chris+Tomlin"
-  },
-  {
-    "artist": "Hillsong Worship",
-    "title": "What A Beautiful Name",
-    "album": "Let There Be Light",
-    "year": 2016,
-    "url": "https://music.youtube.com/search?q=What+A+Beautiful+Name+Hillsong+Worship"
-  },
-  {
-    "artist": "MercyMe",
-    "title": "I Can Only Imagine",
-    "album": "Almost There",
-    "year": 2001,
-    "url": "https://music.youtube.com/search?q=I+Can+Only+Imagine+MercyMe"
-  },
-  {
-    "artist": "Kari Jobe",
-    "title": "Holy Spirit",
-    "album": "Majestic",
-    "year": 2014,
-    "url": "https://music.youtube.com/search?q=Holy+Spirit+Kari+Jobe"
-  },
-  {
-    "artist": "Chris Tomlin",
-    "title": "Amazing Grace (My Chains Are Gone)",
-    "album": "See the Morning",
-    "year": 2006,
-    "url": "https://music.youtube.com/search?q=Amazing+Grace+My+Chains+Are+Gone+Chris+Tomlin"
-  },
-  {
-    "artist": "Matt Maher",
-    "title": "Lord, I Need You",
-    "album": "Alive Again",
-    "year": 2009,
-    "url": "https://music.youtube.com/search?q=Lord+I+Need+You+Matt+Maher"
-  },
-  {
-    "artist": "All Sons & Daughters",
-    "title": "Great Are You Lord",
-    "album": "Live",
-    "year": 2013,
-    "url": "https://music.youtube.com/search?q=Great+Are+You+Lord+All+Sons+%26+Daughters"
-  },
-  {
-    "artist": "Zach Williams",
-    "title": "Chain Breaker",
-    "album": "Chain Breaker",
-    "year": 2016,
-    "url": "https://music.youtube.com/search?q=Chain+Breaker+Zach+Williams"
-  },
-  {
-    "artist": "Lauren Daigle",
-    "title": "You Say",
-    "album": "Look Up Child",
-    "year": 2018,
-    "url": "https://music.youtube.com/search?q=You+Say+Lauren+Daigle"
-  },
-  {
-    "artist": "Bethel Music",
-    "title": "Raise a Hallelujah",
-    "album": "Victory",
-    "year": 2019,
-    "url": "https://music.youtube.com/search?q=Raise+a+Hallelujah+Bethel+Music"
-  },
-  {
-    "artist": "Bethel Music",
-    "title": "Goodness of God",
-    "album": "Victory",
-    "year": 2019,
-    "url": "https://music.youtube.com/search?q=Goodness+of+God+Bethel+Music"
-  },
-  {
-    "artist": "Bethel Music",
-    "title": "Ever Be",
-    "album": "We Will Not Be Shaken",
-    "year": 2015,
-    "url": "https://music.youtube.com/search?q=Ever+Be+Bethel+Music"
-  },
-  {
-    "artist": "Lauren Daigle",
-    "title": "Rescue",
-    "album": "Look Up Child",
-    "year": 2018,
-    "url": "https://music.youtube.com/search?q=Rescue+Lauren+Daigle"
-  },
-  {
-    "artist": "Casting Crowns",
-    "title": "Who Am I",
-    "album": "The Altar and the Door",
-    "year": 2007,
-    "url": "https://music.youtube.com/search?q=Who+Am+I+Casting+Crowns"
-  },
-  {
-    "artist": "Hillsong Worship",
-    "title": "Mighty to Save",
-    "album": "Mighty to Save",
-    "year": 2006,
-    "url": "https://music.youtube.com/search?q=Mighty+to+Save+Hillsong+Worship"
-  }
+    {
+        "title": "Canción de Prueba",
+        "artist": "Artista de Prueba",
+        "album": "Álbum de Prueba",
+        "year": 2026,
+        "url": "https://youtube.com"
+    }
 ];
 
 let songs = [];
@@ -146,44 +13,311 @@ let lastSong = null;
 let currentSong = null;
 let isFlipping = false;
 let selectedArtists = new Set();
+let groupNames = [];
+let groupScores = [];
+
+let currentRound = 1;
+let totalRounds = 5; 
+let groupCount = 2; 
+let cardsGeneratedInRound = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM completamente cargado. Iniciando componentes...");
+
+    // ==========================================
+    // SELECCIÓN DE ELEMENTOS DEL DOM
+    // ==========================================
+    const setupWizard = document.getElementById('setupWizard');
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
+
+    const toStep2 = document.getElementById('toStep2');
+    const toStep3 = document.getElementById('toStep3');
+    const backToStep1 = document.getElementById('backToStep1');
+    const backToStep2 = document.getElementById('backToStep2');
+    const startGameButton = document.getElementById('startGameButton');
+
+    const roundsInput = document.getElementById('roundsInput');
+    const groupCountInput = document.getElementById('groupCountInput');
+    const groupInputsContainer = document.getElementById('groupInputsContainer');
+
     const card = document.querySelector('.card');
-    const generateButton = document.querySelector('#generateBtn');
-    const flipButton = document.querySelector('#flipCardBtn');
-    const saveButton = document.querySelector('#saveConfigBtn');
-    const messageEl = document.querySelector('#configMessage');
-    const yearSelect = document.querySelector('#yearSelect');
-    const yearRange = document.querySelector('#yearRange');
-    const fromInput = document.querySelector('#yearFrom');
-    const toInput = document.querySelector('#yearTo');
-    const artistsContainer = document.querySelector('#artistTags');
+    const generateButton = document.getElementById('generateBtn');
+    const flipButton = document.getElementById('flipCardBtn');
+    const saveButton = document.getElementById('saveConfigBtn');
 
-    const savedConfig = loadSavedConfig();
+    const gameModal = document.getElementById("gameModal");
+    const closeGameModalBtn = document.getElementById("closeGameModalBtn");
+    const playAgainBtn = document.getElementById("playAgainBtn");
+    const teamButtonsContainer = document.getElementById("teamButtons");
 
-    card.classList.add('hidden');
-    if (flipButton) {
-        flipButton.disabled = true;
+    const messageEl = document.getElementById('configMessage');
+    const yearSelect = document.getElementById('yearSelect');
+    const yearRange = document.getElementById('yearRange');
+    const fromInput = document.getElementById('yearFrom');
+    const toInput = document.getElementById('yearTo');
+    const artistsContainer = document.getElementById('artistTags');
+
+    // Inicialización segura de la interfaz
+    if (card) card.classList.add('hidden');
+    if (flipButton) flipButton.disabled = true;
+
+    // Ocultar los 10 paneles de grupos del marcador al iniciar
+    for (let i = 1; i <= 10; i++) {
+        const groupEl = document.getElementById(`group${i}`);
+        if (groupEl) groupEl.style.display = 'none';
     }
 
+    // Cargar canciones inmediatamente
     loadSongs();
 
-    function loadSavedConfig() {
-        try {
-            const raw = localStorage.getItem('musicAppConfig');
-            return raw ? JSON.parse(raw) : null;
-        } catch (error) {
-            console.warn('Error parsing saved config:', error);
-            return null;
+    // ==========================================
+    // NAVEGACIÓN DEL WIZARD (PASOS)
+    // ==========================================
+    toStep2?.addEventListener('click', () => {
+        step1?.classList.remove('active-step');
+        step2?.classList.add('active-step');
+    });
+
+    toStep3?.addEventListener('click', () => {
+        step2?.classList.remove('active-step');
+        step3?.classList.add('active-step');
+    });
+
+    backToStep1?.addEventListener('click', () => {
+        step2?.classList.remove('active-step');
+        step1?.classList.add('active-step');
+    });
+
+    backToStep2?.addEventListener('click', () => {
+        step3?.classList.remove('active-step');
+        step2?.classList.add('active-step');
+    });
+
+    // Generar inputs dinámicos para los nombres de los grupos
+    groupCountInput?.addEventListener('input', () => {
+        const amount = Math.min(parseInt(groupCountInput.value) || 0, 10);
+        if (groupInputsContainer) groupInputsContainer.innerHTML = '';
+
+        for (let i = 1; i <= amount; i++) {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.placeholder = `Nombre del grupo ${i}`;
+            input.className = 'setup-input';
+            groupInputsContainer?.appendChild(input);
         }
+    });
+
+    // ==========================================
+    // BOTÓN EMPEZAR JUEGO (ARRANQUE DE PARTIDA)
+    // ==========================================
+    startGameButton?.addEventListener("click", () => {
+        totalRounds = parseInt(roundsInput?.value, 10) || 5;
+        groupCount = parseInt(groupCountInput?.value, 10) || 2;
+        currentRound = 1;
+        cardsGeneratedInRound = 0;
+
+        // Recuperar nombres de los grupos
+        const inputs = groupInputsContainer ? groupInputsContainer.querySelectorAll('input') : [];
+        groupNames = Array.from(inputs).map((i, index) => i.value || `Grupo ${index + 1}`);
+        if (groupNames.length === 0) {
+            groupNames = Array.from({length: groupCount}, (_, i) => `Grupo ${i + 1}`);
+        }
+        groupScores = new Array(groupNames.length).fill(0);
+        
+        // Limpiar botones previos del modal
+        if (teamButtonsContainer) teamButtonsContainer.innerHTML = '';
+
+        // Configurar panel lateral de puntajes y botones de anotación
+        for (let i = 1; i <= 10; i++) {
+            const groupEl = document.getElementById(`group${i}`);
+            if (i <= groupNames.length) {
+                if (groupEl) groupEl.style.display = 'flex';
+                
+                const nameEl = document.getElementById(`group_${i}_name`);
+                const scoreEl = document.getElementById(`group_${i}_score`);
+                
+                if (nameEl) nameEl.textContent = groupNames[i - 1];
+                if (scoreEl) scoreEl.textContent = "0 pts";
+
+                // Crear botones dentro del modal de puntuación
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'primary-button';
+                btn.style.margin = '5px';
+                btn.textContent = `+1 a ${groupNames[i - 1]}`;
+                btn.addEventListener('click', () => sumarPunto(i - 1));
+                teamButtonsContainer?.appendChild(btn);
+            } else {
+                if (groupEl) groupEl.style.display = 'none';
+            }
+        }
+
+        actualizarVisualizadorRondas();
+        if (setupWizard) setupWizard.style.display = "none";
+    });
+
+    function actualizarVisualizadorRondas() {
+        const el = document.getElementById("roundCounter");
+        if (el) el.textContent = `Ronda: ${currentRound}/${totalRounds}`;
     }
 
+    function sumarPunto(indexGrupo) {
+        groupScores[indexGrupo] += 1;
+        const scoreEl = document.getElementById(`group_${indexGrupo + 1}_score`);
+        if (scoreEl) scoreEl.textContent = `${groupScores[indexGrupo]} pts`;
+        gameModal?.classList.add("hidden");
+    }
+
+    // ==========================================
+    // BOTÓN NUEVA CARTA (MECÁNICA ADAPTADA)
+    // ==========================================
+    generateButton?.addEventListener('click', () => {
+        console.log("Click en Nueva Carta detectado.");
+
+        if (songs.length === 0) {
+            alert("Las canciones aún no han cargado o el archivo songs.json está vacío.");
+            return;
+        }
+
+        let filteredSongs = [...songs];
+
+        // Filtro por Artistas
+        if (selectedArtists.size > 0) {
+            filteredSongs = filteredSongs.filter(song => selectedArtists.has(song.artist));
+        }
+
+        // Filtro por Rango de Años
+        if (yearSelect?.value === 'range') {
+            const from = parseInt(fromInput?.value) || 0;
+            const to = parseInt(toInput?.value) || 9999;
+            filteredSongs = filteredSongs.filter(song => song.year >= from && song.year <= to);
+        }
+
+        // Evitar que salga la misma de forma consecutiva
+        if (filteredSongs.length > 1) {
+            filteredSongs = filteredSongs.filter(song => song !== lastSong);
+        }
+
+        if (!filteredSongs.length) {
+            alert('No hay canciones disponibles con los filtros seleccionados.');
+            return;
+        }
+
+        const randomSong = filteredSongs[Math.floor(Math.random() * filteredSongs.length)];
+        currentSong = randomSong;
+        lastSong = randomSong;
+
+        // Renderizar los datos dentro de la carta
+        try {
+            document.getElementById('songTitle').textContent = randomSong.title;
+            document.getElementById('songAlbum').textContent = randomSong.album;
+            document.getElementById('songYear').textContent = randomSong.year;
+            document.getElementById('songArtist').textContent = randomSong.artist;
+            
+            const urlElement = document.querySelector('.song-url');
+            if (urlElement) {
+                urlElement.href = randomSong.url;
+                urlElement.target = "_blank";
+            }
+
+            // Inyectar código QR
+            const qrContainer = document.getElementById('qrcode');
+            if (qrContainer) {
+                qrContainer.innerHTML = '';
+                if (typeof QRCode !== 'undefined') {
+                    new QRCode(qrContainer, { text: randomSong.url, width: 200, height: 200 });
+                }
+            }
+        } catch (err) {
+            console.error("Error al renderizar los datos de la tarjeta:", err);
+        }
+
+        // Devolver la carta al frente (QR) y mostrarla si estaba oculta
+        if (card) {
+            card.classList.remove('hidden');
+            const songCardElement = document.getElementById("songCard");
+            if (songCardElement) songCardElement.classList.remove('flipped');
+        }
+        cardState = "front";
+        if (flipButton) flipButton.disabled = false;
+
+        // ------------------------------------------
+        // SISTEMA DE TURNOS Y RONDAS (groupCount + 1)
+        // ------------------------------------------
+        cardsGeneratedInRound++; // Añadimos el turno actual
+
+        // Cuando pasamos el límite de grupos (es decir, el Grupo 1 pide su segunda carta)
+        if (cardsGeneratedInRound > groupCount) { 
+            if (currentRound < totalRounds) {
+                currentRound++;                 // Sube la ronda visualmente en este clic
+                cardsGeneratedInRound = 1;      // Se setea en 1 porque ya es la carta del primer equipo
+                actualizarVisualizadorRondas();  
+                console.log("--- ¡Nueva Ronda! --- Turno actual:", currentRound);
+            } else {
+                // Alerta cuando se completó la última ronda física y se intenta pedir de más
+                setTimeout(() => { 
+                    alert("¡Partida terminada! Ya completaron todas las rondas configuradas."); 
+                }, 100);
+                return;
+            }
+        }
+    });
+
+    // ==========================================
+    // MECÁNICA DE GIRO (FLIP CARD)
+    // ==========================================
+    flipButton?.addEventListener('click', () => {
+        if (isFlipping) return;
+        isFlipping = true;
+
+        const songCardElement = document.getElementById("songCard");
+        if (songCardElement) {
+            songCardElement.classList.toggle('flipped');
+            cardState = songCardElement.classList.contains('flipped') ? "back" : "front";
+
+            // Si se revela el reverso, se abre automáticamente el modal de puntuación
+            if (cardState === "back") {
+                setTimeout(() => { gameModal?.classList.remove("hidden"); }, 700);
+            }
+        }
+        setTimeout(() => { isFlipping = false; }, 600);
+    });
+
+    // ==========================================
+    // MENÚS DE CONFIGURACIÓN Y LOCALSTORAGE
+    // ==========================================
+    yearSelect?.addEventListener('change', () => {
+        if (yearSelect.value === 'range') {
+            yearRange?.classList.remove('hidden');
+        } else {
+            yearRange?.classList.add('hidden');
+        }
+    });
+
+    saveButton?.addEventListener('click', () => {
+        const config = {
+            yearMode: yearSelect?.value,
+            from: fromInput?.value,
+            to: toInput?.value,
+            artists: [...selectedArtists]
+        };
+        localStorage.setItem('musicAppConfig', JSON.stringify(config));
+        alert('Configuración guardada localmente.');
+    });
+
+    // Botones funcionales para interactuar con modales
+    closeGameModalBtn?.addEventListener("click", () => gameModal?.classList.add("hidden"));
+    playAgainBtn?.addEventListener("click", () => { location.reload(); });
+
+    // ==========================================
+    // GESTIÓN DE CONTROLADORES DE ARCHIVOS LOCALES
+    // ==========================================
     function loadSongs() {
         fetch('./songs.json')
             .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
+                if (!response.ok) throw new Error('No se pudo encontrar el archivo songs.json');
                 return response.json();
             })
             .then(data => {
@@ -191,13 +325,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 populateArtists();
             })
             .catch(error => {
-                console.warn('Fetch failed, using fallback data:', error);
+                console.warn("Cargando array de respaldo (fallbackSongs).", error);
                 songs = fallbackSongs;
                 populateArtists();
             });
     }
 
     function populateArtists() {
+        if (!artistsContainer) return;
         artistsContainer.innerHTML = '';
         selectedArtists.clear();
 
@@ -206,9 +341,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const tag = document.createElement('span');
             tag.className = 'tag';
             tag.textContent = artist;
-            if (selectedArtists.has(artist)) {
-                tag.classList.add('selected');
-            }
             tag.addEventListener('click', () => {
                 if (selectedArtists.has(artist)) {
                     selectedArtists.delete(artist);
@@ -220,242 +352,5 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             artistsContainer.appendChild(tag);
         });
-
-        validateSaveState();
-    }
-
-    yearSelect.addEventListener('change', () => {
-        if (yearSelect.value === 'range') {
-            yearRange.classList.remove('hidden');
-        } else {
-            yearRange.classList.add('hidden');
-            clearMessage();
-        }
-        validateSaveState();
-    });
-
-    fromInput.addEventListener('input', () => {
-        clearMessage();
-        validateSaveState();
-    });
-    toInput.addEventListener('input', () => {
-        clearMessage();
-        validateSaveState();
-    });
-
-    saveButton?.addEventListener('click', saveConfig);
-
-    generateButton.addEventListener('click', () => {
-        if (card.classList.contains('hidden')) {
-            if (!prepareNextSong()) {
-                return;
-            }
-
-            showCardFront();
-            card.classList.remove('hidden');
-            flipButton.disabled = false;
-            return;
-        }
-
-        card.classList.add('hidden');
-        flipButton.disabled = true;
-        currentSong = null;
-
-        setTimeout(() => {
-            if (!prepareNextSong()) {
-                return;
-            }
-
-            showCardFront();
-            card.classList.remove('hidden');
-            flipButton.disabled = false;
-        }, 250);
-    });
-
-    flipButton?.addEventListener('click', () => {
-        if (card.classList.contains('hidden') || isFlipping) {
-            return;
-        }
-
-        if (card.classList.contains('flipped')) {
-            isFlipping = true;
-            card.classList.remove('flipped');
-            setTimeout(() => {
-                isFlipping = false;
-            }, 600);
-            return;
-        }
-
-        if (!currentSong && !prepareNextSong()) {
-            return;
-        }
-
-        updateCardBack();
-        isFlipping = true;
-        card.classList.add('flipped');
-        setTimeout(() => {
-            isFlipping = false;
-        }, 600);
-    });
-
-    function saveConfig() {
-        if (yearSelect.value === 'range') {
-            const from = parseInt(fromInput.value, 10);
-            const to = parseInt(toInput.value, 10);
-
-            if (!fromInput.value || !toInput.value) {
-                showMessage('Completa ambos campos de año antes de guardar.', 'error');
-                return;
-            }
-            if (from > to) {
-                showMessage('El año Desde no puede ser mayor que Hasta.', 'error');
-                return;
-            }
-        }
-
-        const config = {
-        };
-
-        try {
-            localStorage.setItem('musicAppConfig', JSON.stringify(config));
-            showMessage('Configuración guardada.', 'success');
-        } catch (error) {
-            console.error('Error saving config:', error);
-            showMessage('No se pudo guardar la configuración.', 'error');
-        }
-    }
-
-    function validateSaveState() {
-        if (!saveButton) return;
-
-        const invalidRange = yearSelect.value === 'range'
-            && fromInput.value
-            && toInput.value
-            && parseInt(fromInput.value, 10) > parseInt(toInput.value, 10);
-
-        saveButton.disabled = invalidRange;
-
-        if (invalidRange) {
-            showMessage('El año Desde no puede ser mayor que Hasta.', 'error');
-        } else {
-            clearMessage();
-        }
-    }
-
-    function showMessage(text, type) {
-        if (!messageEl) return;
-        messageEl.textContent = text;
-        messageEl.className = `message ${type || ''}`;
-    }
-
-    function clearMessage() {
-        if (!messageEl) return;
-        messageEl.textContent = '';
-        messageEl.className = 'message';
-    }
-
-    function getYearRange() {
-        const fromValue = fromInput.value.trim();
-        const toValue = toInput.value.trim();
-
-        if (yearSelect.value !== 'range') {
-            return null;
-        }
-
-        const from = parseInt(fromValue, 10);
-        const to = parseInt(toValue, 10);
-
-        if (!fromValue || !toValue || Number.isNaN(from) || Number.isNaN(to)) {
-            return null;
-        }
-
-        return { from, to };
-    }
-
-    function getFilteredSongs() {
-        let filtered = songs;
-
-        if (selectedArtists.size > 0) {
-            filtered = filtered.filter(song => selectedArtists.has(song.artist));
-        }
-
-        const range = getYearRange();
-        if (range) {
-            filtered = filtered.filter(song => song.year >= range.from && song.year <= range.to);
-        }
-
-        return filtered;
-    }
-
-    function prepareNextSong() {
-        if (yearSelect.value === 'range') {
-            const range = getYearRange();
-            if (!range) {
-                showMessage('Completa los años Desde y Hasta para aplicar el filtro.', 'error');
-                return false;
-            }
-            if (range.from > range.to) {
-                showMessage('El año Desde no puede ser mayor que Hasta.', 'error');
-                return false;
-            }
-        }
-
-        const filtered = getFilteredSongs();
-        if (filtered.length === 0) {
-            alert('No hay canciones que coincidan con los filtros.');
-            return false;
-        }
-
-        let randomSong;
-        do {
-            randomSong = filtered[Math.floor(Math.random() * filtered.length)];
-        } while (filtered.length > 1 && randomSong === lastSong);
-
-        currentSong = randomSong;
-        lastSong = randomSong;
-        return true;
-    }
-
-function showCardFront() {
-    card.classList.remove('flipped');
-    const front = card.querySelector('.card-front-content');
-    if (!front) return;
-
-    front.innerHTML = `
-        <div id="qrcode"></div>
-
-        <a href="${currentSong?.url || '#'}" target="_blank" class="song-url">
-            Abrir en YouTube Music
-        </a>
-
-        <div class="play-icon"></div>
-        <p>Escanea el QR o presiona el botón</p>
-    `;
-
-    const qrContainer = front.querySelector('#qrcode');
-    if (!qrContainer || !currentSong) return;
-
-    qrContainer.innerHTML = "";
-
-    new QRCode(qrContainer, {
-        text: currentSong.url,
-        width: 225,
-        height: 225
-    });
-}
-
-    function updateCardBack() {
-        if (!currentSong) return;
-        const back = card.querySelector('.card-back');
-        if (!back) return;
-        const songInfo = back.querySelector('.song-info');
-        if (!songInfo) return;
-        
-        songInfo.innerHTML = `
-            <h2>${currentSong.title}</h2>
-            <p>Álbum: ${currentSong.album}</p>
-            <p class="year">${currentSong.year}</p>
-            <p>Artista: ${currentSong.artist}</p>
-        `;
     }
 });
